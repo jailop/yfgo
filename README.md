@@ -1,6 +1,6 @@
 # yfgo: Yahoo Finance Data Retriever
 
-Retrieves minute stock prices from Yahoo Finance.
+Retrieves minute stock prices from Yahoo Finance. This project is inspired by [yfinance](https://github.com/ranaroussi/yfinance).
 
 Data is saved in a DuckDB file under the directory `$HOME/.config/yfgo`
 
