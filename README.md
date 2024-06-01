@@ -60,7 +60,7 @@ SELECT * FROM history LIMIT 10;
 
 **Disclaimers**:
 
-* Yahoo Finance are registered trademarks of Yahoo, Inc.
-* The author and this project is not affiliated, endorsed, or vetted by Yahoo Inc.
+* Yahoo Finance is a registered trademark of Yahoo, Inc.
+* The author and this project are not affiliated, endorsed, or vetted by Yahoo Inc.
 * This app uses Yahoo's publicly available API's.
 * This app is intended for research and educational purposes.
