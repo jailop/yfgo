@@ -4,6 +4,8 @@ go 1.22
 
 require github.com/marcboeker/go-duckdb v1.6.6
 
+require github.com/marcboeker/go-duckdb v1.6.6
+
 require (
 	github.com/apache/arrow/go/v14 v14.0.2 // indirect
 	github.com/goccy/go-json v0.10.2 // indirect
