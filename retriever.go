@@ -4,7 +4,7 @@ import (
     "os"
     "encoding/json"
     "fmt"
-    "io/ioutil"
+    "io"
     "net/http"
 )
 
@@ -40,7 +40,7 @@ func RetrieveJSON(url string) ([]byte, error) {
         return []byte{}, err
     } 
     defer resp.Body.Close()
-    body, err := ioutil.ReadAll(resp.Body)
+    body, err := io.ReadAll(resp.Body)
     if err != nil {
         fmt.Println(err)
         return []byte{}, err
@@ -68,5 +68,3 @@ func SaveJSON(body []byte) error {
     _, err = file.Write(body)
     return err
 }
-
-

@@ -3,7 +3,7 @@ package main
 import (
     "testing"
     // "strconv"
-    "io/ioutil"
+    "os"
     "encoding/json"
 )
 
@@ -25,7 +25,7 @@ func TestRetrieveJSON(t *testing.T) {
 //    if err != nil {
 //        t.Errorf("JSON file cannot be saved")
 //    }
-    body, err := ioutil.ReadFile("output.json")
+    body, err := os.ReadFile("output.json")
     if err != nil {
         t.Errorf("JSON file cannot be read")
         return
@@ -49,5 +49,4 @@ func TestRetrieveJSON(t *testing.T) {
         t.Errorf("Open does not have any data value")
         return
     }
-    println(InsertStatement())
 }

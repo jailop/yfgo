@@ -1,6 +1,8 @@
 module yfgo
 
-go 1.22.3
+go 1.22
+
+require github.com/marcboeker/go-duckdb v1.6.6
 
 require (
 	github.com/apache/arrow/go/v14 v14.0.2 // indirect
@@ -8,7 +10,6 @@ require (
 	github.com/google/flatbuffers v23.5.26+incompatible // indirect
 	github.com/klauspost/compress v1.16.7 // indirect
 	github.com/klauspost/cpuid/v2 v2.2.5 // indirect
-	github.com/marcboeker/go-duckdb v1.6.6 // indirect
 	github.com/mitchellh/mapstructure v1.5.0 // indirect
 	github.com/pierrec/lz4/v4 v4.1.18 // indirect
 	github.com/zeebo/xxh3 v1.0.2 // indirect
