@@ -16,7 +16,7 @@ go install
 
 Make sure to add the `$HOME/go/bin` to your path.
 
-This program can be schedule to run periodically using a cron tab, like the
+This program can be scheduled to run periodically using a cron tab, like the
 below one. That indicates that the app will run every 5 minutes from 9 to 16
 hours between Monday and Friday.
 
