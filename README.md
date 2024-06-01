@@ -1,4 +1,4 @@
-# Yahoo Finance Minute Data Retriever
+# yfgo: Yahoo Finance Data Retriever
 
 Retrieves minute stock prices from Yahoo Finance.
 
@@ -32,7 +32,7 @@ To access the database, you can use any DuckDB interface. For example:
 duckdb $HOME/.config/yfgo/data.db
 ```
 
-The database only contains a one table: `history`:
+The database contains only one table: `history`:
 
 ```SQL
 SELECT * FROM history LIMIT 10;
