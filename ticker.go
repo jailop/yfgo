@@ -19,7 +19,7 @@ func LastUpdate(symbol string) int64 {
         fmt.Printf("Error parsing last update for %s\n", symbol)
         return DefaultThen()
     }
-    if value > 7 * 60 * 24 {
+    if value < BackMinutes(7 * 60 * 24) {
         value = DefaultThen()
     }
     return value
