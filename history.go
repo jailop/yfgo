@@ -42,7 +42,8 @@ func GetHistory(symbol string, start_time int64, end_time int64) (History, error
         {name: "period2", value: strconv.FormatInt(end_time, 10)},
     }
     baseURL := "https://query2.finance.yahoo.com/v8/finance/chart"
-    url := MakeURL(baseURL, "COIN", params)
+    url := MakeURL(baseURL, symbol, params)
+    println(url)
     body, err := RetrieveJSON(url)
     if err != nil {
         return History{}, err
