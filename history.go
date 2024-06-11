@@ -2,6 +2,7 @@ package main
 
 import (
     "fmt"
+    "math"
     "reflect"
     "strings"
     "strconv"
@@ -27,10 +28,10 @@ func GenerateHistoryFromParsedJSON(body []byte) (History, error) {
     }
     return History{
         content.Chart.Result[0].TimeStamp,
-        content.Chart.Result[0].Indicators.Quote[0].Open,
-        content.Chart.Result[0].Indicators.Quote[0].Low,
-        content.Chart.Result[0].Indicators.Quote[0].High,
-        content.Chart.Result[0].Indicators.Quote[0].Close,
+        NaNZeroPrices(content.Chart.Result[0].Indicators.Quote[0].Open),
+        NaNZeroPrices(content.Chart.Result[0].Indicators.Quote[0].Low),
+        NaNZeroPrices(content.Chart.Result[0].Indicators.Quote[0].High),
+        NaNZeroPrices(content.Chart.Result[0].Indicators.Quote[0].Close),
         content.Chart.Result[0].Indicators.Quote[0].Volume,
     }, nil
 }
@@ -43,7 +44,6 @@ func GetHistory(symbol string, start_time int64, end_time int64) (History, error
     }
     baseURL := "https://query2.finance.yahoo.com/v8/finance/chart"
     url := MakeURL(baseURL, symbol, params)
-    println(url)
     body, err := RetrieveJSON(url)
     if err != nil {
         return History{}, err
@@ -53,6 +53,18 @@ func GetHistory(symbol string, start_time int64, end_time int64) (History, error
         return History{}, err
     }
     return history, nil
+}
+
+func NaNZeroPrices(prices []float64) []float64 {
+    modPrices := make([]float64, len(prices)) 
+    for i := range prices {
+        if (prices[i] == 0) {
+            modPrices[i] = math.NaN()
+        } else {
+            modPrices[i] = prices[i]
+        }
+    }
+    return modPrices
 }
 
 func InsertStatement() string {

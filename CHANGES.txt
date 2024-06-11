@@ -6,3 +6,7 @@
 
 * Fixed definition of symbol to retrieve data
 * Included limit to period1 - max 7 days back
+
+0.1.2: 2024-06-10
+
+* Zero values for prices are replaces by NaN
