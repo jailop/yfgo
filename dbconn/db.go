@@ -1,12 +1,13 @@
-package main
+package dbconn
 
 import (
     "database/sql"
     _ "github.com/marcboeker/go-duckdb"
+    "github.com/jailop/yfgo/fileutils"
 )
 
 func DBPath() (string, error){
-    return FilePath("data.db")
+    return fileutils.FilePath("data.db")
 }
 
 func DBFileExists() bool {
@@ -14,7 +15,7 @@ func DBFileExists() bool {
     if err != nil {
         return false
     }
-    return FileExists(dbPath)
+    return fileutils.FileExists(dbPath)
 }
 
 func OpenDB() (*sql.DB, error) {

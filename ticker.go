@@ -4,10 +4,12 @@ import (
     _ "context"
     "fmt"
     "strings"
+    "github.com/jailop/yfgo/dbconn"
+
 )
 
 func LastUpdate(symbol string) int64 {
-    db, err := OpenDB()
+    db, err := dbconn.OpenDB()
     if err != nil {
         return DefaultThen()
     }
@@ -30,7 +32,7 @@ func Update(symbol string) error {
     if symb == "" {
         return nil
     }
-    db, err := OpenDB()
+    db, err := dbconn.OpenDB()
     if err != nil {
         return err
     }

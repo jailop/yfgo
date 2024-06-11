@@ -5,18 +5,20 @@ import (
     "os"
     "bufio"
     "time"
+    "github.com/jailop/yfgo/dbconn"
+    "github.com/jailop/yfgo/fileutils"
 )
 
 func main() {
-    if !DBFileExists() {
-        CreateDB()
+    if !dbconn.DBFileExists() {
+        dbconn.CreateDB()
     }
-    listPath, err := FilePath("list.txt")
+    listPath, err := fileutils.FilePath("list.txt")
     if err != nil {
         println(err)
         return
     }
-    if !FileExists(listPath) {
+    if !fileutils.FileExists(listPath) {
         println("List of ticker symbols doesn't exist")
         println("Create a new one at ", listPath)
         return
