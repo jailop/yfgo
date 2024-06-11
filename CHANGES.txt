@@ -10,3 +10,7 @@
 0.1.2: 2024-06-10
 
 * Zero values for prices are replaces by NaN
+
+0.2.0: 2024-06-11
+
+* Files have been separated in a library and an update utility. The library is ready to be import by other projects.
