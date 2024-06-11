@@ -6,7 +6,7 @@ replace github.com/jailop/yfgo/yfgo_lib => ../yfgo_lib
 
 require (
 	github.com/jailop/yfgo/yfgo_lib v0.0.0
-	github.com/marcboeker/go-duckdb v1.6.6
+	github.com/marcboeker/go-duckdb v1.7.0
 )
 
 require (
