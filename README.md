@@ -10,6 +10,7 @@ ticker symbols for which data will be retrieved. Write a symbol per line.
 To build and install the binary:
 
 ```bash
+cd yfgo/yfgo_update
 go build
 go install
 ```
@@ -21,7 +22,7 @@ below one. That indicates that the app will run every 60 minutes from 9 to 16
 hours between Monday and Friday.
 
 ```cron
-*/60 9-16 * * MON-FRI $HOME/go/bin/yfgo
+*/60 9-16 * * MON-FRI $HOME/go/bin/yfgo_update
 ```
 
 Only needed data will be retrieved from Yahoo Finance.

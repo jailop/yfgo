@@ -1,4 +1,4 @@
-package fileutils 
+package yfgo_lib
 
 import (
     "os"

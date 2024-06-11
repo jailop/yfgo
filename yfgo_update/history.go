@@ -6,6 +6,7 @@ import (
     "reflect"
     "strings"
     "strconv"
+    "github.com/jailop/yfgo/yfgo_lib"
     _ "database/sql"
     _ "log"
     _ "github.com/marcboeker/go-duckdb"
@@ -21,7 +22,7 @@ type History struct {
 }
 
 func GenerateHistoryFromParsedJSON(body []byte) (History, error) {
-    content, err := ParseJSON(body)
+    content, err := yfgo_lib.ParseJSON(body)
     if err != nil {
         fmt.Println(err)
         return History{}, err
@@ -37,14 +38,14 @@ func GenerateHistoryFromParsedJSON(body []byte) (History, error) {
 }
 
 func GetHistory(symbol string, start_time int64, end_time int64) (History, error) {
-    params := []QueryParam{
-        {name: "interval", value: "1m"},
-        {name: "period1", value: strconv.FormatInt(start_time, 10)},
-        {name: "period2", value: strconv.FormatInt(end_time, 10)},
+    params := []yfgo_lib.QueryParam{
+        {Name: "interval", Value: "1m"},
+        {Name: "period1", Value: strconv.FormatInt(start_time, 10)},
+        {Name: "period2", Value: strconv.FormatInt(end_time, 10)},
     }
     baseURL := "https://query2.finance.yahoo.com/v8/finance/chart"
-    url := MakeURL(baseURL, symbol, params)
-    body, err := RetrieveJSON(url)
+    url := yfgo_lib.MakeURL(baseURL, symbol, params)
+    body, err := yfgo_lib.RetrieveJSON(url)
     if err != nil {
         return History{}, err
     }
