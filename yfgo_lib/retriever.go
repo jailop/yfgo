@@ -1,4 +1,4 @@
-package main
+package yfgo_lib
 
 import (
     "os"
@@ -68,3 +68,4 @@ func SaveJSON(body []byte) error {
     _, err = file.Write(body)
     return err
 }
+

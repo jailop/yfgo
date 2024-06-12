@@ -1,4 +1,4 @@
-package main
+package yfgo_lib
 
 import (
     "fmt"
@@ -6,14 +6,14 @@ import (
 )
 
 type QueryParam struct {
-    name string
-    value string
+    Name string
+    Value string
 }
 
 func BuildQuery(params []QueryParam) string {
     queryValues := url.Values{}
     for _, param := range params {
-        queryValues.Add(param.name, param.value)
+        queryValues.Add(param.Name, param.Value)
     }
     return queryValues.Encode()
 }

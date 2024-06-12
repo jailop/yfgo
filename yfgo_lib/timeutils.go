@@ -1,4 +1,4 @@
-package main
+package yfgo_lib
 
 import (
     "time"
@@ -9,7 +9,7 @@ func BackMinutes(minutes int64) int64 {
 }
 
 func DefaultThen() int64 {
-    const maxPeriod = 5 * 60 * 24
+    const maxPeriod = 7 * 60 * 24
     return BackMinutes(maxPeriod)
 }
 

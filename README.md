@@ -1,6 +1,6 @@
 # yfgo: Yahoo Finance Data Retriever
 
-Retrieves minute stock prices from Yahoo Finance.
+Retrieves minute stock prices from Yahoo Finance. This project is inspired by [yfinance](https://github.com/ranaroussi/yfinance).
 
 Data is saved in a DuckDB file under the directory `$HOME/.config/yfgo`
 
@@ -10,18 +10,18 @@ ticker symbols for which data will be retrieved. Write a symbol per line.
 To build and install the binary:
 
 ```bash
+cd yfgo/yfgo_update
 go build
 go install
 ```
 
 Make sure to add the `$HOME/go/bin` to your path.
 
-This program can be schedule to run periodically using a cron tab, like the
-below one. That indicates that the app will run every 5 minutes from 9 to 16
-hours between Monday and Friday.
+This program can be scheduled to run periodically using a cron tab, like the
+below one. That indicates that the app will run every hour between Monday and Friday.
 
 ```cron
-*/5 9-16 * * MON-FRI $HOME/bin/yfgo
+* */1 * * MON-FRI $HOME/go/bin/yfgo_update
 ```
 
 Only needed data will be retrieved from Yahoo Finance.
