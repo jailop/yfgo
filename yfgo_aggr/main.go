@@ -5,12 +5,15 @@ import (
 )
 
 func main() {
-    // history, err := yfgo_lib.QueryDB("BTC-USD", 1710421400, 1717427340)
-    history, err := yfgo_lib.QueryDB("BTC-USD", 1710421400, 1718135965)
+    history, err := yfgo_lib.QueryDB("NFLX", 0, yfgo_lib.Now())
     if err != nil {
         println(err)
         return
     }
-    aggr := AggregateHistory(history, 720)
+    // aggr := history.AggregateByDay()
+    aggr := history.Aggregate(120)
     aggr.Print()
+    println()
+    ma := aggr.MovingAverage(9)
+    ma.Print()
 }
