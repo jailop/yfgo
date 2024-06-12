@@ -1,4 +1,4 @@
-package main
+package yfgo_lib
 
 import (
     "testing"

@@ -38,7 +38,7 @@ func UpdateTicker(symbol string) error {
     defer db.Close()
     start_time := LastUpdate(symb) + 1
     end_time := yfgo_lib.Now()
-    history, err := GetHistory(symb, start_time, end_time)
+    history, err := yfgo_lib.GetHistory(symb, start_time, end_time)
     if err != nil {
         return err
     }

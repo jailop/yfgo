@@ -1,8 +1,10 @@
-module github.com/jailop/yfgo/ygfo_lib
+module github.com/jailop/yfgo/yfgo_aggr
 
-go 1.22
+go 1.22.4
 
-require github.com/marcboeker/go-duckdb v1.7.0
+replace github.com/jailop/yfgo/yfgo_lib => ../yfgo_lib
+
+require github.com/jailop/yfgo/yfgo_lib v0.0.0
 
 require (
 	github.com/apache/arrow/go/v14 v14.0.2 // indirect
@@ -10,6 +12,7 @@ require (
 	github.com/google/flatbuffers v23.5.26+incompatible // indirect
 	github.com/klauspost/compress v1.16.7 // indirect
 	github.com/klauspost/cpuid/v2 v2.2.5 // indirect
+	github.com/marcboeker/go-duckdb v1.7.0 // indirect
 	github.com/mitchellh/mapstructure v1.5.0 // indirect
 	github.com/pierrec/lz4/v4 v4.1.18 // indirect
 	github.com/zeebo/xxh3 v1.0.2 // indirect
