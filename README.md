@@ -18,10 +18,11 @@ go install
 Make sure to add the `$HOME/go/bin` to your path.
 
 This program can be scheduled to run periodically using a cron tab, like the
-below one. That indicates that the app will run every hour between Monday and Friday.
+below one. That indicates that the app will run every hour between Monday and
+Friday and 10 and 16 hours.
 
 ```cron
-* */1 * * MON-FRI $HOME/go/bin/yfgo_update
+5 10-16 * * MON-FRI $HOME/go/bin/yfgo_update
 ```
 
 Only needed data will be retrieved from Yahoo Finance.
