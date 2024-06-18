@@ -11,9 +11,13 @@ func main() {
         return
     }
     // aggr := history.AggregateByDay()
-    aggr := history.Aggregate(120)
-    aggr.Print()
+    aggr := history.Aggregate(5)
+    // aggr.Print()
+    // println()
+    dh := aggr.DailyTimedHistory(840)
+    dh.Print()
     println()
-    ma := aggr.MovingAverage(9)
+    ma := dh.MovingAverage(9)
     ma.Print()
+    println()
 }

@@ -1,4 +1,4 @@
-package yfgo_lib
+package yfgo
 
 import (
 	_ "database/sql"
@@ -38,6 +38,15 @@ func (history *History) Append(record HistoryRecord) {
 	history.High = append(history.High, record.High)
 	history.Close = append(history.Close, record.Close)
 	history.Volume = append(history.Volume, record.Volume)
+}
+
+func (history *History) AppendFromHistory(another History, idx int) {
+    history.Time = append(history.Time, another.Time[idx])
+    history.Open = append(history.Open, another.Open[idx])
+    history.Low = append(history.Low, another.Low[idx])
+    history.High = append(history.High, another.High[idx])
+    history.Close = append(history.Close, another.Close[idx])
+    history.Volume = append(history.Volume, another.Volume[idx])
 }
 
 func (history *History) FillMissed() {

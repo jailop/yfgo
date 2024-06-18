@@ -2,10 +2,8 @@ module github.com/jailop/yfgo/yfgo_update
 
 go 1.22
 
-replace github.com/jailop/yfgo/yfgo_lib => ../yfgo_lib
-
 require (
-	github.com/jailop/yfgo/yfgo_lib v0.0.0
+	github.com/jailop/yfgo v0.0.0
 	github.com/marcboeker/go-duckdb v1.7.0
 )
 

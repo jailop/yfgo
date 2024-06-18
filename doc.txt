@@ -1,0 +1,71 @@
+package yfgo_lib // import "github.com/jailop/yfgo/ygfo_lib"
+
+
+FUNCTIONS
+
+func BackMinutes(minutes int64) int64
+func BuildQuery(params []QueryParam) string
+func CreateDB() error
+func DBFileExists() bool
+func DBPath() (string, error)
+func DefaultThen() int64
+func FileExists(filePath string) bool
+func FilePath(filename string) (string, error)
+func InsertStatement() string
+func MakeURL(url string, symbol string, params []QueryParam) string
+func NaNZeroPrices(prices []float64) []float64
+func Now() int64
+func OpenDB() (*sql.DB, error)
+func RetrieveJSON(url string) ([]byte, error)
+func SaveJSON(body []byte) error
+func UnixTimeAgoAndNow(minutes int64) (int64, int64)
+
+TYPES
+
+type ChartRec struct {
+	Result []ResultRec `json:"result"`
+}
+
+type Content struct {
+	Chart ChartRec `json:"chart"`
+}
+
+func ParseJSON(body []byte) (Content, error)
+
+type History struct {
+	Time   []int64
+	Open   []float64
+	Low    []float64
+	High   []float64
+	Close  []float64
+	Volume []int64
+}
+
+func GenerateHistoryFromParsedJSON(body []byte) (History, error)
+
+func GetHistory(symbol string, start_time int64, end_time int64) (History, error)
+
+func QueryDB(symbol string, start int64, end int64) History
+
+type IndicatorRec struct {
+	Quote []QuoteRec `json:"quote"`
+}
+
+type QueryParam struct {
+	Name  string
+	Value string
+}
+
+type QuoteRec struct {
+	Open   []float64
+	Low    []float64
+	High   []float64
+	Close  []float64
+	Volume []int64
+}
+
+type ResultRec struct {
+	TimeStamp  []int64      `json:"timestamp"`
+	Indicators IndicatorRec `json:"indicators"`
+}
+

@@ -1,8 +1,8 @@
-package yfgo_lib
+package yfgo
 
 import (
 	"math"
-    "github.com/jailop/yfgo/yfgo_lib/arrayops"
+    "github.com/jailop/yfgo/arrayops"
 )
 
 const day = 24 * 60 * 60
@@ -138,7 +138,7 @@ func (history History) AggregateByDay() History {
 	return aggr
 }
 
-func (history History) MovingAverage(factor int) History{
+func (history History) MovingAverage(factor int) History {
     if factor > len(history.Time) {
         return History{}
     }
@@ -160,4 +160,19 @@ func (history History) MovingAverage(factor int) History{
         Close,
         VolumeInt,    
     }
+}
+
+func (history History) DailyTimedHistory(minutes int64) History {
+    var filtered History
+    for i := range len(history.Time) {
+        diff := (history.Time[i] - minutes * 60) % day
+        if diff == 0 {
+            filtered.AppendFromHistory(history, i)
+        }
+    }
+    return filtered
+}
+
+func (history History) DailyMovingAverages(factor int) History {
+    return History{}
 }
