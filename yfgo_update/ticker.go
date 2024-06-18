@@ -4,13 +4,13 @@ import (
     _ "context"
     "fmt"
     "strings"
-    "github.com/jailop/yfgo/yfgo_lib"
+    "github.com/jailop/yfgo"
 )
 
 func LastUpdate(symbol string) int64 {
-    db, err := yfgo_lib.OpenDB()
+    db, err := yfgo.OpenDB()
     if err != nil {
-        return yfgo_lib.DefaultThen()
+        return yfgo.DefaultThen()
     }
     defer db.Close()
     row := db.QueryRow("SELECT MAX(time) FROM history WHERE symbol = ?", symbol)
@@ -18,10 +18,10 @@ func LastUpdate(symbol string) int64 {
     err = row.Scan(&value)
     if err != nil {
         fmt.Printf("Error parsing last update for %s\n", symbol)
-        return yfgo_lib.DefaultThen()
+        return yfgo.DefaultThen()
     }
-    if value < yfgo_lib.BackMinutes(7 * 60 * 24) {
-        value = yfgo_lib.DefaultThen()
+    if value < yfgo.BackMinutes(7 * 60 * 24) {
+        value = yfgo.DefaultThen()
     }
     return value
 }
@@ -31,14 +31,14 @@ func UpdateTicker(symbol string) error {
     if symb == "" {
         return nil
     }
-    db, err := yfgo_lib.OpenDB()
+    db, err := yfgo.OpenDB()
     if err != nil {
         return err
     }
     defer db.Close()
     start_time := LastUpdate(symb) + 1
-    end_time := yfgo_lib.Now()
-    history, err := yfgo_lib.GetHistory(symb, start_time, end_time)
+    end_time := yfgo.Now()
+    history, err := yfgo.GetHistory(symb, start_time, end_time)
     if err != nil {
         return err
     }

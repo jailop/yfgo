@@ -162,10 +162,10 @@ func (history History) MovingAverage(factor int) History {
     }
 }
 
-func (history History) DailyTimedHistory(minutes int64) History {
+func (history History) DailyTimedHistory(offset_minutes int64) History {
     var filtered History
     for i := range len(history.Time) {
-        diff := (history.Time[i] - minutes * 60) % day
+        diff := (history.Time[i] - offset_minutes * 60) % day
         if diff == 0 {
             filtered.AppendFromHistory(history, i)
         }
@@ -173,6 +173,27 @@ func (history History) DailyTimedHistory(minutes int64) History {
     return filtered
 }
 
-func (history History) DailyMovingAverages(factor int) History {
-    return History{}
+func generateInDayOffsets(minutes int64) []int64 {
+    var accum int64 = 0
+    offsets := make([]int64, 0)
+    if (minutes >= 24 * 60) {
+        return offsets
+    }
+    for accum < 24 * 60 {
+        offsets = append(offsets, accum)
+        accum += minutes
+    }
+    return offsets
+}
+
+func (history History) DailyTimedMovingAverages(minutes int64, factor int) History {
+    offsets := generateInDayOffsets(minutes)
+    var result History
+    for _, offset := range offsets {
+        subset := history.DailyTimedHistory(int64(offset))
+        aggr := subset.MovingAverage(factor)
+        result.AppendHistory(aggr)
+    } 
+    result.Sort()
+    return result
 }

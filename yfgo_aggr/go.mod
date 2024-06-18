@@ -2,9 +2,9 @@ module github.com/jailop/yfgo/yfgo_aggr
 
 go 1.22.4
 
-replace github.com/jailop/yfgo/yfgo_lib => ../yfgo_lib
+replace github.com/jailop/yfgo => ..
 
-require github.com/jailop/yfgo/yfgo_lib v0.0.0
+require github.com/jailop/yfgo v0.0.0
 
 require (
 	github.com/apache/arrow/go/v14 v14.0.2 // indirect

@@ -5,19 +5,19 @@ import (
     "os"
     "bufio"
     "time"
-    "github.com/jailop/yfgo/yfgo_lib"
+    "github.com/jailop/yfgo"
 )
 
 func main() {
-    if !yfgo_lib.DBFileExists() {
-        yfgo_lib.CreateDB()
+    if !yfgo.DBFileExists() {
+        yfgo.CreateDB()
     }
-    listPath, err := yfgo_lib.FilePath("list.txt")
+    listPath, err := yfgo.FilePath("list.txt")
     if err != nil {
         println(err)
         return
     }
-    if !yfgo_lib.FileExists(listPath) {
+    if !yfgo.FileExists(listPath) {
         println("List of ticker symbols doesn't exist")
         println("Create a new one at ", listPath)
         return

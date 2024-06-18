@@ -3,13 +3,15 @@ package yfgo
 import (
 	_ "database/sql"
 	"fmt"
-	_ "github.com/marcboeker/go-duckdb"
 	_ "log"
 	"math"
 	"reflect"
 	"strconv"
 	"strings"
 	"time"
+
+	"github.com/jailop/yfgo/arrayops"
+	_ "github.com/marcboeker/go-duckdb"
 )
 
 // Represent an Stock Price/Volume history
@@ -47,6 +49,12 @@ func (history *History) AppendFromHistory(another History, idx int) {
     history.High = append(history.High, another.High[idx])
     history.Close = append(history.Close, another.Close[idx])
     history.Volume = append(history.Volume, another.Volume[idx])
+}
+
+func (history *History) AppendHistory(another History) {
+    for idx := range len(another.Time) {
+        history.AppendFromHistory(another, idx)
+    }
 }
 
 func (history *History) FillMissed() {
@@ -121,6 +129,31 @@ func GetHistory(symbol string, start_time int64, end_time int64) (History, error
 		return History{}, err
 	}
 	return history, nil
+}
+
+func (history *History) Sort() {
+    n := len(history.Time)
+    time_ := make([]int64, n)
+    open_ := make([]float64, n)
+    low_ := make([]float64, n)
+    high_ := make([]float64, n)
+    close_ := make([]float64, n)
+    volume_ := make([]int64, n)
+    indices := arrayops.SortedIndices(history.Time)
+    for _, pos := range indices {
+        time_ = append(time_, history.Time[pos]) 
+        open_ = append(open_, history.Open[pos]) 
+        low_ = append(low_, history.Low[pos]) 
+        high_ = append(high_, history.High[pos]) 
+        close_ = append(close_, history.Close[pos]) 
+        volume_ = append(volume_, history.Volume[pos]) 
+    }
+    history.Time = time_
+    history.Open = open_
+    history.Low = low_
+    history.High = high_
+    history.Close = close_
+    history.Volume = volume_
 }
 
 func NaNZeroPrices(prices []float64) []float64 {
