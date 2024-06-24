@@ -131,7 +131,7 @@ func GetHistory(symbol string, start_time int64, end_time int64) (History, error
 	return history, nil
 }
 
-func (history *History) Sort() {
+func (history History) Sort() History {
     n := len(history.Time)
     time_ := make([]int64, n)
     open_ := make([]float64, n)
@@ -140,20 +140,15 @@ func (history *History) Sort() {
     close_ := make([]float64, n)
     volume_ := make([]int64, n)
     indices := arrayops.SortedIndices(history.Time)
-    for _, pos := range indices {
-        time_ = append(time_, history.Time[pos]) 
-        open_ = append(open_, history.Open[pos]) 
-        low_ = append(low_, history.Low[pos]) 
-        high_ = append(high_, history.High[pos]) 
-        close_ = append(close_, history.Close[pos]) 
-        volume_ = append(volume_, history.Volume[pos]) 
+    for i, pos := range indices {
+        time_[i] = history.Time[pos]
+        open_[i] = history.Open[pos]
+        low_[i] = history.Low[pos]
+        high_[i] = history.High[pos]
+        close_[i] = history.Close[pos]
+        volume_[i] = history.Volume[pos]
     }
-    history.Time = time_
-    history.Open = open_
-    history.Low = low_
-    history.High = high_
-    history.Close = close_
-    history.Volume = volume_
+    return History{time_, open_, low_, high_, close_, volume_}
 }
 
 func NaNZeroPrices(prices []float64) []float64 {

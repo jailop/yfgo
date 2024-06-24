@@ -1,6 +1,7 @@
 package yfgo
 
 import (
+    _ "fmt"
 	"math"
     "github.com/jailop/yfgo/arrayops"
 )
@@ -186,14 +187,22 @@ func generateInDayOffsets(minutes int64) []int64 {
     return offsets
 }
 
+// DailyTimedMovingAverages compute the daily moving average at a given time
+// during the day based on prices computed by intervals of time.
 func (history History) DailyTimedMovingAverages(minutes int64, factor int) History {
     offsets := generateInDayOffsets(minutes)
     var result History
     for _, offset := range offsets {
-        subset := history.DailyTimedHistory(int64(offset))
-        aggr := subset.MovingAverage(factor)
-        result.AppendHistory(aggr)
+        aggr := history.Aggregate(minutes) 
+        subset := aggr.DailyTimedHistory(int64(offset))
+        if (len(subset.Time) == 0) {
+            continue
+        }
+        ma := subset.MovingAverage(factor)
+        if (len(ma.Time) == 0) {
+            continue
+        }
+        result.AppendHistory(ma)
     } 
-    result.Sort()
-    return result
+    return result.Sort()
 }

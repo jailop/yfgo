@@ -25,3 +25,7 @@
 * Aggregate function DailyTimedHistory
 * Aggregate function DailyTimedMovingAverages
 * Sort by index function
+
+0.3.2: 2024-06-24
+
+* Fixes on DailyTimedMovingAverages
