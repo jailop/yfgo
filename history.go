@@ -5,6 +5,7 @@ import (
 	"fmt"
 	_ "log"
 	"math"
+    "encoding/json"
 	"reflect"
 	"strconv"
 	"strings"
@@ -152,7 +153,24 @@ func (history History) Sort() History {
 }
 
 func (history History) ToJSON() ([]byte, error) {
-    return json.Marshal(history, "", "    ")
+    return json.Marshal(history)
+}
+
+func (history History) Tail(n int) History {
+    history_size := len(history.Time)
+    size := n
+    if size > history_size {
+        size = history_size
+    }
+    offset := history_size - size
+    return History {
+        history.Time[offset:],
+        history.Open[offset:],
+        history.Low[offset:],
+        history.High[offset:],
+        history.Close[offset:],
+        history.Volume[offset:],
+    }
 }
 
 func NaNZeroPrices(prices []float64) []float64 {
