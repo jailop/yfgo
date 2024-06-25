@@ -16,12 +16,12 @@ import (
 
 // Represent an Stock Price/Volume history
 type History struct {
-	Time   []int64
-	Open   []float64
-	Low    []float64
-	High   []float64
-	Close  []float64
-	Volume []int64
+	Time   []int64      `json:"time"`
+	Open   []float64    `json:"open"`
+	Low    []float64    `json:"low"`
+	High   []float64    `json:"high"`
+	Close  []float64    `json:"close"`
+	Volume []int64      `json:"volume"`
 }
 
 type HistoryRecord struct {
@@ -149,6 +149,10 @@ func (history History) Sort() History {
         volume_[i] = history.Volume[pos]
     }
     return History{time_, open_, low_, high_, close_, volume_}
+}
+
+func (history History) ToJSON() ([]byte, error) {
+    return json.Marshal(history, "", "    ")
 }
 
 func NaNZeroPrices(prices []float64) []float64 {
