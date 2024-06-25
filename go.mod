@@ -1,4 +1,4 @@
-module github.com/jailop/yfgo
+module github.com/jailop/yfgo/v0.3.3
 
 go 1.22
 
