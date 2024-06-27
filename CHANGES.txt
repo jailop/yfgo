@@ -33,3 +33,7 @@
 0.3.3: 2024-06-24
 
 * ToJSON function for History
+
+0.3.4: 2024-06-26
+
+* Functions to manage list of symbols included

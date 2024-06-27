@@ -8,6 +8,7 @@ require (
 	github.com/apache/arrow/go/v14 v14.0.2 // indirect
 	github.com/goccy/go-json v0.10.2 // indirect
 	github.com/google/flatbuffers v23.5.26+incompatible // indirect
+	github.com/jailop/yfgo v0.0.0-20240625010026-e622d8117d4c // indirect
 	github.com/klauspost/compress v1.16.7 // indirect
 	github.com/klauspost/cpuid/v2 v2.2.5 // indirect
 	github.com/mitchellh/mapstructure v1.5.0 // indirect

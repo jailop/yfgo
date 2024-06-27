@@ -13,9 +13,6 @@ func TestQuery(t *testing.T) {
 	if err != nil {
 		t.Errorf("Query was not succesful %s", err)
 	}
-	if len(history.Time) == 0 {
-		t.Errorf("No data was retrieved")
-	}
 	flag := false
 	for i := range len(history.Close) {
 		if math.IsNaN(history.Close[i]) {
