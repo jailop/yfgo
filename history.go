@@ -1,3 +1,7 @@
+/*
+This module contains the definition of History, that is the basic
+representation for price and volume time series.
+*/
 package yfgo
 
 import (
@@ -15,7 +19,11 @@ import (
 	_ "github.com/marcboeker/go-duckdb"
 )
 
-// Represent an Stock Price/Volume history
+/**
+Represent an Stock Price/Volume history.
+Every field is a array. All the fields
+will have the same size.
+*/
 type History struct {
 	Time   []int64      `json:"time"`
 	Open   []float64    `json:"open"`
@@ -25,6 +33,10 @@ type History struct {
 	Volume []int64      `json:"volume"`
 }
 
+/**
+This structure is used to represent
+a point on time from a History object.
+*/
 type HistoryRecord struct {
 	Time   int64
 	Open   float64
