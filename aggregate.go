@@ -111,8 +111,10 @@ func ceilDay(when int64) int64 {
 	return when/day*day + day - 1
 }
 
-// AggregateByDay performs an aggregation by day.
-// It generates price and volume values for every day in the given interval.
+/**
+AggregateByDay performs an aggregation by day.
+It generates price and volume values for every day in the given interval.
+*/
 func (history History) AggregateByDay() History {
 	var aggr History
 	if len(history.Time) == 0 {
@@ -187,8 +189,10 @@ func generateInDayOffsets(minutes int64) []int64 {
     return offsets
 }
 
-// DailyTimedMovingAverages compute the daily moving average at a given time
-// during the day based on prices computed by intervals of time.
+/**
+DailyTimedMovingAverages compute the daily moving average at a given time
+during the day based on prices computed by intervals of time.
+*/
 func (history History) DailyTimedMovingAverages(minutes int64, factor int) History {
     offsets := generateInDayOffsets(minutes)
     var result History
