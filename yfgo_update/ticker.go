@@ -7,6 +7,10 @@ import (
     "github.com/jailop/yfgo"
 )
 
+// Retrieve the time of the last
+// record saved in the database.
+// This function is used to update
+// the database.
 func LastUpdate(symbol string) int64 {
     db, err := yfgo.OpenDB()
     if err != nil {
@@ -20,6 +24,7 @@ func LastUpdate(symbol string) int64 {
         fmt.Printf("Error parsing last update for %s\n", symbol)
         return yfgo.DefaultThen()
     }
+	// I data is older than 1 day
     if value < yfgo.BackMinutes(7 * 60 * 24) {
         value = yfgo.DefaultThen()
     }
@@ -38,10 +43,12 @@ func UpdateTicker(symbol string) error {
     defer db.Close()
     start_time := LastUpdate(symb) + 1
     end_time := yfgo.Now()
+	// Retrieves new data
     history, err := yfgo.GetHistory(symb, start_time, end_time)
     if err != nil {
         return err
     }
+	// Inserting data into the database
     stmt := `
         INSERT INTO 
             history(symbol, time, open, low, high, close, volume)

@@ -125,6 +125,11 @@ func GenerateHistoryFromParsedJSON(body []byte) (History, error) {
 	}, nil
 }
 
+// Retrieves data from Yahoo Finance API
+// @param symbol: Ticker symbol
+// @param start_time: seconds from the epoch
+// @param end_time: seconds from the epoch
+// @returns An History object or error
 func GetHistory(symbol string, start_time int64, end_time int64) (History, error) {
 	params := []QueryParam{
 		{Name: "interval", Value: "1m"},
